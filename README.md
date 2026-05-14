@@ -6,13 +6,13 @@ Yii2 mailer adapter for sending emails through the W4M Email Gateway API.
 
 - Name: `w4msolutions/w4m-email-gateway`
 - Type: `yii2-extension`
-- Namespace: `W4MSolutions\\W4mEmailGateway`
+- Namespace: `W4MSolutions\W4mEmailGateway`
 
 ## Features
 
 - Drop-in compatible mailer component for current Yii2 mail usage.
-- Keeps Yii compose/render/layout flow by extending `yii\\symfonymailer\\Mailer`.
-- Supports existing `yii\\symfonymailer\\Message` calls used across the app.
+- Keeps Yii compose/render/layout flow by extending `yii\symfonymailer\Mailer`.
+- Supports existing `yii\symfonymailer\Message` calls used across the app.
 - Sends payload to gateway `/send` endpoint with API key authentication.
 - Converts regular attachments to gateway `attachments[]` payload.
 - Rewrites inline CID embeds (for example `cid:image.jpg`) into `data:` URIs.
@@ -20,7 +20,7 @@ Yii2 mailer adapter for sending emails through the W4M Email Gateway API.
 
 ## Class and Function Reference
 
-### `W4MSolutions\\W4mEmailGateway\\Mailer`
+### `W4MSolutions\W4mEmailGateway\Mailer`
 
 Main Yii mailer component.
 
@@ -30,21 +30,21 @@ Main Yii mailer component.
 - `sendPayload(array $payload)` performs one HTTP call through `GatewayClient`.
 - `waitBeforeRetry(int $seconds)` sleeps between retries (override-friendly for tests).
 
-### `W4MSolutions\\W4mEmailGateway\\GatewayPayloadBuilder`
+### `W4MSolutions\W4mEmailGateway\GatewayPayloadBuilder`
 
-Converts `yii\\symfonymailer\\Message` into gateway JSON payload.
+Converts `yii\symfonymailer\Message` into gateway JSON payload.
 
 - `build(Message $message)` maps recipients, subject/body, from/from_name, reply_to, attachments.
 - `normalizeAddressList(...)` and `extractPrimaryAddressAndName(...)` standardize address data.
 - `buildAttachmentPayload(...)` base64-encodes attachment data for gateway transport.
 
-### `W4MSolutions\\W4mEmailGateway\\CidEmbedRewriter`
+### `W4MSolutions\W4mEmailGateway\CidEmbedRewriter`
 
 Makes inline embedded images compatible with gateway body-only HTML transport.
 
 - `rewrite(string $html, array $attachments)` replaces `cid:` references with `data:` URIs.
 
-### `W4MSolutions\\W4mEmailGateway\\GatewayClient`
+### `W4MSolutions\W4mEmailGateway\GatewayClient`
 
 HTTP transport client.
 
