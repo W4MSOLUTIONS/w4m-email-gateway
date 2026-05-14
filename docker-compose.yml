@@ -1,0 +1,15 @@
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - composer-cache:/tmp/composer-cache
+    environment:
+      COMPOSER_CACHE_DIR: /tmp/composer-cache
+    command: ["sh", "docker/run-tests.sh"]
+
+volumes:
+  composer-cache:
